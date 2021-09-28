@@ -1,0 +1,26 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "generates your team profile",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "jest": "^27.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradford583/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradford583/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/bradford583/Team-Profile-Generator#readme"
+}
