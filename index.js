@@ -12,7 +12,9 @@ const employees = [];
 //     startHtml();
 //     addEmployee();
 // };
-
+function initApp() {
+    addEmployee();
+}
 function addEmployee() {
     inquirer.prompt([
             {
@@ -63,17 +65,21 @@ function addEmployee() {
                     ],
                     name: "moreEmployees"
                 }
-            ])
-            .then(function({roleInfo, moreEmployees}) {
-                let newEmployee;
+            ])}
+            .then(function({roleInfo}) {
                 if (role === "Intern") {
-                    newEmployee = new Intern(name, id, email, role, roleInfo);
+                    employees.push (new Intern(name, id, email, role, roleInfo));
                 } else if (role === "Engineer") {
-                    newEmployee = new Engineer(name, id, email, role, roleInfo);
+                    employees.push (new Engineer(name, id, email, role, roleInfo));
                 } else if (role === "Manager") {
-                    newEmployee = new Manager(name, id, email, role, roleInfo);
+                    employees.push (new Manager(name, id, email, role, roleInfo));
+                }
+            }.then(function({moreEmployees}) {
+                if (moreEmployees === "yes") {
+                    addEmployee();
                 }
             })
+            )
         })
 };
 
@@ -92,5 +98,5 @@ function startHtml() {
     </html>`
 }
 
-addEmployee();
+initApp();
 
