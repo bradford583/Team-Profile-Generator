@@ -8,10 +8,10 @@ const Manager = require("./lib/Manager");
 
 const employees = [];
 
-function initApp() {
-    startHtml();
-    addEmployee();
-};
+// function initApp() {
+//     startHtml();
+//     addEmployee();
+// };
 
 function addEmployee() {
     inquirer.prompt([
@@ -27,7 +27,7 @@ function addEmployee() {
                     "Engineer",
                     "Manager"
                 ],
-                name: "rold"
+                name: "role"
             },
             {
                 message: "What is the employee's id?",
@@ -42,10 +42,12 @@ function addEmployee() {
             let roleInfo = "";
             if (role === "Intern") {
                 roleInfo = "school name"
-            } else if (role === "Engineer") {
-                roleInfo === "Github username"
-            } else {
-                roleInfo === "office phone number"
+            } 
+            if (role === "Engineer") {
+                roleInfo = "Github username"
+            } 
+            if (role === "Manager") {
+                roleInfo = "office phone number"
             }
             inquirer.prompt([
                 {
@@ -65,11 +67,11 @@ function addEmployee() {
             .then(function({roleInfo, moreEmployees}) {
                 let newEmployee;
                 if (role === "Intern") {
-                    newEmployee = new Intern(name, id, email, roleInfo);
+                    newEmployee = new Intern(name, id, email, role, roleInfo);
                 } else if (role === "Engineer") {
-                    newEmployee = new Engineer(name, id, email, roleInfo);
-                } else {
-                    newEmployee = new Employee(name, id, email, roleInfo);
+                    newEmployee = new Engineer(name, id, email, role, roleInfo);
+                } else if (role === "Manager") {
+                    newEmployee = new Manager(name, id, email, role, roleInfo);
                 }
             })
         })
@@ -90,5 +92,5 @@ function startHtml() {
     </html>`
 }
 
-initApp();
+addEmployee();
 
