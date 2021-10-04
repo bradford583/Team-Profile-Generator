@@ -8,13 +8,11 @@ const Manager = require("./lib/Manager");
 
 const employees = [];
 
-// function initApp() {
-//     startHtml();
-//     addEmployee();
-// };
 function initApp() {
+    startHtml();
     addEmployee();
-}
+};
+
 function addEmployee() {
     inquirer.prompt([
             {
@@ -44,11 +42,9 @@ function addEmployee() {
             let roleInfo = "";
             if (role === "Intern") {
                 roleInfo = "school name"
-            } 
-            if (role === "Engineer") {
+            } else if (role === "Engineer") {
                 roleInfo = "Github username"
-            } 
-            if (role === "Manager") {
+            } else if (role === "Manager") {
                 roleInfo = "office phone number"
             }
             inquirer.prompt([
@@ -65,23 +61,28 @@ function addEmployee() {
                     ],
                     name: "moreEmployees"
                 }
-            ])}
-            .then(function({roleInfo}) {
+            ])
+            .then(function({roleInfo, moreEmployees}) {
+                let newEmployee;
                 if (role === "Intern") {
-                    employees.push (new Intern(name, id, email, role, roleInfo));
+                    newEmployee = new Intern(name, id, email, roleInfo);
                 } else if (role === "Engineer") {
-                    employees.push (new Engineer(name, id, email, role, roleInfo));
+                    newEmployee = new Engineer(name, id, email, roleInfo);
                 } else if (role === "Manager") {
-                    employees.push (new Manager(name, id, email, role, roleInfo));
+                    newEmployee = new Employee(name, id, email, roleInfo);
                 }
-            }).then(function({moreEmployees}) {
-                if (moreEmployees === "yes") {
-                    addEmployee();
-                }
-            })
-            )
-        }
-
+                employees.push(newEmployee);
+                addHtml(newEmployee)
+                .then(function() {
+                    if (moreEmployees === "yes") {
+                        addEmployee();
+                    } else {
+                        finishHtml();
+                    }
+                });
+            });
+        });
+};
 
 function startHtml() {
     const html = `<!DOCTYPE html>
