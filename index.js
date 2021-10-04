@@ -44,7 +44,7 @@ function addEmployee() {
                 roleInfo = "school name"
             } else if (role === "Engineer") {
                 roleInfo = "Github username"
-            } else {
+            } else if (role === "Manager") {
                 roleInfo = "office phone number"
             }
             inquirer.prompt([
@@ -68,7 +68,7 @@ function addEmployee() {
                     newEmployee = new Intern(name, id, email, roleInfo);
                 } else if (role === "Engineer") {
                     newEmployee = new Engineer(name, id, email, roleInfo);
-                } else {
+                } else if (role === "Manager") {
                     newEmployee = new Employee(name, id, email, roleInfo);
                 }
                 employees.push(newEmployee);
@@ -100,7 +100,7 @@ function startHtml() {
         </nav>
         <div class="container">
             <div class="row">`;
-    fs.writeFile("./output/team.html", html, function(err) {
+    fs.writeFile("./dist/team.html", html, function(err) {
         if (err) {
             console.log(err);
         }
@@ -153,7 +153,7 @@ function addHtml(employee) {
         </div>`
         }
         console.log("adding team member");
-        fs.appendFile("./output/team.html", data, function (err) {
+        fs.appendFile("./dist/team.html", data, function (err) {
             if (err) {
                 return reject(err);
             };
@@ -169,7 +169,7 @@ function finishHtml() {
 </body>
 </html>`;
 
-    fs.appendFile("./output/team.html", html, function (err) {
+    fs.appendFile("./dist/team.html", html, function (err) {
         if (err) {
             console.log(err);
         };
