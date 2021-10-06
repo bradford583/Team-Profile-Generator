@@ -69,7 +69,7 @@ function addEmployee() {
                 } else if (role === "Engineer") {
                     newEmployee = new Engineer(name, id, email, roleInfo);
                 } else if (role === "Manager") {
-                    newEmployee = new Employee(name, id, email, roleInfo);
+                    newEmployee = new Manager(name, id, email, roleInfo);
                 }
                 employees.push(newEmployee);
                 addHtml(newEmployee)
